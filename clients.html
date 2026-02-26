@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Clients | Subscription Approvals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-check-circle"></i>
+                <span>SubsApprove</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="clients.html" class="nav-item active">
+                    <i class="fas fa-building"></i>
+                    <span>Clients</span>
+                </a>
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Pending</span>
+                    <span class="badge" id="pendingBadge">0</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div class="user-name">Admin User</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Manage Clients</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="showAddClientModal()">
+                        <i class="fas fa-plus"></i> Add New Client
+                    </button>
+                </div>
+            </header>
+
+            <!-- Clients Table -->
+            <div class="table-container">
+                <table class="clients-table">
+                    <thead>
+                        <tr>
+                            <th>Company Code</th>
+                            <th>Company Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientsTableBody">
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty state -->
+            <div class="empty-state" id="emptyClients" style="display: none;">
+                <i class="fas fa-building"></i>
+                <h3>No clients yet</h3>
+                <p>Add your first client to get started.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Client Modal -->
+    <div class="modal" id="clientModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="clientModalTitle">Add New Client</h2>
+                <button class="modal-close" onclick="closeModal('clientModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="clientForm">
+                    <div class="form-group">
+                        <label>Company Code</label>
+                        <input type="text" id="clientCode" placeholder="e.g., TEC001" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" id="clientName" placeholder="Full company name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="clientEmail" placeholder="contact@company.com" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('clientModal')">Cancel</button>
+                <button class="btn-primary" onclick="saveClient()">Save Client</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="clients.js"></script>
+</body>
+</html>
